@@ -1,0 +1,15 @@
+C:\Electronics\Balancer_USB_ADXL_05\bin\Release\Balancer_USB_ADXL.exe.config
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer_USB_ADXL.exe
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer_USB_ADXL.pdb
+C:\Electronics\Balancer_USB_ADXL_05\bin\Release\Balancer_USB_ADXL.exe.manifest
+C:\Electronics\Balancer_USB_ADXL_05\bin\Release\Balancer_USB_ADXL.application
+C:\Electronics\Balancer_USB_ADXL_05\bin\Release\Balancer_USB_ADXL.exe
+C:\Electronics\Balancer_USB_ADXL_05\bin\Release\Balancer_USB_ADXL.pdb
+C:\Electronics\Balancer_USB_ADXL_05\bin\Release\Balancer_USB_ADXL.xml
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer_USB_ADXL_05.vbprojResolveAssemblyReference.cache
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer.Form1.resources
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer.Resources.resources
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer_USB_ADXL_05.vbproj.GenerateResource.Cache
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer_USB_ADXL.exe.manifest
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer_USB_ADXL.application
+C:\Electronics\Balancer_USB_ADXL_05\obj\x86\Release\Balancer_USB_ADXL.xml
