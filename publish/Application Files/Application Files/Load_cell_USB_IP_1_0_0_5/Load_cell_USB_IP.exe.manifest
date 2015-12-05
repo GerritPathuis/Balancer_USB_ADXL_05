@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="Load_cell_USB_IP.exe" version="1.0.0.5" publicKeyToken="db1aa70446e1db67" language="neutral" processorArchitecture="x86" type="win32" />
+  <description asmv2:iconFile="scale.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="Load_cell_USB_IP" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+    <commandLine file="Load_cell_USB_IP.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.VisualBasic.PowerPacks.Vs" version="10.0.0.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Load_cell_USB_IP.exe" size="68096">
+      <assemblyIdentity name="Load_cell_USB_IP" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>zz9J7Nrkd/GM7W8jqQvigt+b+QI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="scale.ico" size="4286">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>TAPUaEAdSDR8nV3vohTEloHhx6s=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=GP-PC\GP" issuerKeyHash="3beaaef21807dda38ff69dfa53012524aa2196ad" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>8HZvJorrPRrciHDnKCHd5lx7LCQ=</DigestValue></Reference></SignedInfo><SignatureValue>lK+jsPhgOz0ehuDq3undMxRL6S78emazsSEwT147QjwGFROIRsbtx074Q3BCJRFZgK0ZjvKQx+gOaaDUjFmmk6tXPeGPv5ITiyq5FZuXQeFu00yTylCSeOrg5KvTyICcRloR1P9vSd+DE59+rKnAxPCtUTduYiyfHGcmzqcrpZs=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>plUqN6co/S7kxjHLDpRCyEgRBhNJzGN2t7GCinZ/QGa/8NeIFfNpAe9SGYyXukXdxf7BaukDS6C3Avyc4AIk4LmzMqIFvrnvZbUhm7NPrMj/D8IpzQk5od6srbTnP7MXksQbaKjH2AJqdS4smexMEJ+v+srVVF4AbZamuOXZRkk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="242c7b5ce6dd2128e77088dc1a3deb8a266f76f0" Description="" Url=""><as:assemblyIdentity name="Load_cell_USB_IP.exe" version="1.0.0.5" publicKeyToken="db1aa70446e1db67" language="neutral" processorArchitecture="x86" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=GP-PC\GP</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>QTqg0mxCi6E535KZVa6zBsE0yMA=</DigestValue></Reference></SignedInfo><SignatureValue>npCmEpfsFocBFaEmJqL9aEzZy9hHVBwC/0O1BdpOvEMYaAlfSoBGv0CiW7MpdRnGLwe/ZHl8R8ev6T/Cfh7U50mGyQtH2HPgjptnVAT2LMvQ1esqWCTwQZcpK4EpOKCmnrmVx4vC+8PQVtbxpRabzyAYqb7h/M8sNHi7HV9RU5w=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>plUqN6co/S7kxjHLDpRCyEgRBhNJzGN2t7GCinZ/QGa/8NeIFfNpAe9SGYyXukXdxf7BaukDS6C3Avyc4AIk4LmzMqIFvrnvZbUhm7NPrMj/D8IpzQk5od6srbTnP7MXksQbaKjH2AJqdS4smexMEJ+v+srVVF4AbZamuOXZRkk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBuTCCASKgAwIBAgIQPlYlV0kfG5JO78VHf+3ZmDANBgkqhkiG9w0BAQUFADAbMRkwFwYDVQQDHhAARwBQAC0AUABDAFwARwBQMB4XDTEyMDkyOTExMTYyMloXDTEzMDkyOTE3MTYyMlowGzEZMBcGA1UEAx4QAEcAUAAtAFAAQwBcAEcAUDCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAplUqN6co/S7kxjHLDpRCyEgRBhNJzGN2t7GCinZ/QGa/8NeIFfNpAe9SGYyXukXdxf7BaukDS6C3Avyc4AIk4LmzMqIFvrnvZbUhm7NPrMj/D8IpzQk5od6srbTnP7MXksQbaKjH2AJqdS4smexMEJ+v+srVVF4AbZamuOXZRkkCAwEAATANBgkqhkiG9w0BAQUFAAOBgQA+u5QFXWc61G/unYL9Ntv+ytkK4VOdkOKRXm+i2k2XkMcNwObJoDAgWd4HYVLHrRMeHF4EJM+wL2HQ0O17F8zbaFFBdXLjT4Qtxc9bWwpCO81yL0LAzBvxlujuBR03Rq9gw/nfeCwbQkC/5vpzTDOic0vND7Iwln4P80cFFBl3Kw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
