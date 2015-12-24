@@ -13,6 +13,7 @@ Imports System.Windows.Forms
 Imports System.Drawing.Printing
 
 Public Class Form1
+    '............................
     Dim y_old_s1 As Integer                 'Used in the picturebox4..
     Dim y_old_s2 As Integer                 'Used in the picturebox4
     Dim hertz As Double = 1                 'Hertz of the rotor 
