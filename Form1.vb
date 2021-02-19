@@ -134,7 +134,7 @@ Public Class Form1
             strArr = intext.Split(CChar(" "))
             For count3 = 1 To strArr.Length - 1
                 accel2_pro = Val(strArr(count3))                'acceleration sensor #2 (-100%/+100%)
-                accel2_pro = accel2_pro + zero_bias_d2          'verwerking van de bias
+                accel2_pro += zero_bias_d2          'verwerking van de bias
 
                 '---------------- draw in the graph -----------------------------------------
                 If strArr(count3) <> "" And strArr(count3) <> "D2" Then
@@ -171,7 +171,7 @@ Public Class Form1
                 y_new_d1m = CInt(ymat * Gain.Value * PictureBox3.Height() * 1.238)
                 Try
                     p_Graphics.DrawLine(pen3, cntpic3, y_old_s1, cntpic3 + time_step, y_new_d1m)
-                    cntpic3 = cntpic3 + time_step
+                    cntpic3 += time_step
                     y_old_s1 = y_new_d1m
                 Catch ex As Exception
                     MsgBox("Error 101 writing problem" & ex.Message)
@@ -199,7 +199,7 @@ Public Class Form1
                 y_new_d2m = CInt(ymat * Gain.Value * PictureBox3.Height * 1.238)
                 Try
                     p_Graphics.DrawLine(pen3a, cntpic4, y_old_s2, cntpic4 + time_step, y_new_d2m)
-                    cntpic4 = cntpic4 + time_step
+                    cntpic4 += time_step
                     y_old_s2 = y_new_d2m
                 Catch ex As Exception
                     MsgBox("Error 101 writing problem" & ex.Message)
@@ -258,7 +258,7 @@ Public Class Form1
             End If
             '---------------NOW presenting on Bulls Eye--------------------------------
             '--------------------------------------------------------------------------
-            bulls_eye_counter = bulls_eye_counter + 1
+            bulls_eye_counter += 1
             If (bulls_eye_counter > 20) Then
                 Drwg_bullseye(hertz * 2 * PI)
                 bulls_eye_counter = 0
@@ -316,7 +316,7 @@ Public Class Form1
             End If
             '---------------NOW presenting on Bulls Eye--------------------------------
             '--------------------------------------------------------------------------
-            bulls_eye_counter = bulls_eye_counter + 1
+            bulls_eye_counter += 1
             If (bulls_eye_counter > 20) Then
                 Drwg_bullseye(hertz * 2 * PI)
                 bulls_eye_counter = 0
@@ -692,7 +692,7 @@ Public Class Form1
         If bullno = 1 Then                                                          'left hand support
             mx = CInt(PictureBox1.Width * 0.25)                                           'Middelpunt bulls eye #1
             c_force = weight_left * accel                                           'F= m*a  [N]
-            c_force = c_force + c_veer_L * e_radius                                 'F= e_radius x veerconstante opstelling
+            c_force += c_veer_L * e_radius                                 'F= e_radius x veerconstante opstelling
             c_wght = 1000 * 1000 * c_force / (omega * omega * Radius_left.Value)    'Radius in [mm], Correctie gewicht in gram
 
             str = "L_Sensor= " & accel.ToString("F2") & " [m/s2], v=" & velo.ToString("F2") & " [mm/s] r= " & e_radius.ToString("F4") &
@@ -703,7 +703,7 @@ Public Class Form1
         Else                                                                        'Right hand support   
             mx = CInt(PictureBox1.Width * 0.75)                                           'Middelpunt Bulls eye #2
             c_force = weight_right * accel                                          'F= m*a [N]
-            c_force = c_force + c_veer_R * e_radius                                 'F= e_radius x veerconstante opstelling
+            c_force += c_veer_R * e_radius                                 'F= e_radius x veerconstante opstelling
             c_wght = 1000 * 1000 * c_force / (omega * omega * Radius_right.Value)   'Radius in [mm], Correctie gewicht in gram
 
             str = "R_Sensor= " & accel.ToString("F2") & " [m/s2], v=" & velo.ToString("F2") & " [mm/s] r= " & e_radius.ToString("F4") &
@@ -942,7 +942,7 @@ Public Class Form1
             strg = -1 * sensor_range_ADXL * i / (hor_lines * Gain.Value * 2)
             Try
                 p_Graphics.DrawString(strg.ToString("F2") & " [m/s2]", drawFont, drawBrush, drawPoint1)
-                strg = strg * -1
+                strg *= -1
                 p_Graphics.DrawString(strg.ToString("F2") & " [m/s2]", drawFont, drawBrush, drawPoint2)
             Catch ex As Exception
                 MsgBox("Writing problem 110")
