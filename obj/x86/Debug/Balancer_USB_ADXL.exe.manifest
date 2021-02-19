@@ -49,18 +49,18 @@
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>+9B/+xXZpymrXyQp3ULlAYIsQOE=</dsig:DigestValue>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>iOFZol3Qx4+yZkRu1BvmPOIIRCTMiiAYPCZTyLvdh4U=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Balancer_USB_ADXL.exe.config" size="1628">
+  <file name="Balancer_USB_ADXL.exe.config" size="1648">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>2ObFap+xZmpbnVeFtu5JmkylBYY=</dsig:DigestValue>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qjnFXz0OagYju06emg+bfOwO/+5AmVQ0iXF2ck4/Ahw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="scale.ico" size="4286">
@@ -68,8 +68,8 @@
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>TAPUaEAdSDR8nV3vohTEloHhx6s=</dsig:DigestValue>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+WUmE6iQ8l8t7aZZGTnKUQGqxXHhLs834DD2lbrWvfw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="scale2.ICO" size="766">
@@ -77,8 +77,8 @@
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>FrIWqyxjZDxfMN7wZ9O8hdb2YsI=</dsig:DigestValue>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>5iuYHHSUZffByuoWi7YjDTYkbCZ7Mp4GhzBTIj3JYsE=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

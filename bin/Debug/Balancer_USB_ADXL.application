@@ -4,18 +4,17 @@
   <description asmv2:publisher="Balancer_USB_ADXL" asmv2:product="Balancer_USB_ADXL" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" minimumRequiredVersion="2.0.0.0" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.0" profile="Client" supportedRuntime="4.0.30319" />
-    <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Balancer_USB_ADXL.exe.manifest" size="4879">
+    <dependentAssembly dependencyType="install" codebase="Balancer_USB_ADXL.exe.manifest" size="4951">
       <assemblyIdentity name="Balancer_USB_ADXL.exe" version="2.1.0.10" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="x86" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>r0IYeGC+M+1QvfipXpsIg6AI/qA=</dsig:DigestValue>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>jHiGA1xbNYI9gOX3rCnJQSdp13UFAmDYp2vj1g8ozSM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

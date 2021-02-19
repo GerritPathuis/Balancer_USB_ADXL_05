@@ -19,18 +19,18 @@ Public Class Form1
     Dim hertz As Double = 1                 'Hertz of the rotor 
     Dim cntpic3 As Integer                  'Used in the graph
     Dim cntpic4 As Integer                  'Used in the graph
-    Dim cntpic5 As Integer                  'Used in the graph
+    ReadOnly cntpic5 As Integer                  'Used in the graph
     Dim bulls_eye_counter As Integer = 0
     Dim hoek1, hoek2 As Double              'angle sensor 1 and 2
     Dim weight_left As Double = 1           'weight on left support
     Dim weight_right As Double = 1          'weight on right support
-    Dim colorcount As Integer
-    Dim sensor_range_ADXL As Double = 12     '[m/s2], Range For the ADXL213 ==> +/- 1.2 g, 
-    Dim sensor_range_AS5510 As Double = 2 / 1000.0F             '[m], magnet length is 2.0 [mm]
+    ReadOnly colorcount As Integer
+    ReadOnly sensor_range_ADXL As Double = 12     '[m/s2], Range For the ADXL213 ==> +/- 1.2 g, 
+    ReadOnly sensor_range_AS5510 As Double = 2 / 1000.0F             '[m], magnet length is 2.0 [mm]
     Dim bulls_eye_range As Double = 1                           '[mm/2] initial value to prevent zero devision
     Dim AS5510_signal_1, AS5510_signal_2 As Double             ' Between 0.0 and 0.5
     Dim signal_1_strength, signal_2_strength As Double          'signal in 0.0-1.0
-    Dim signal_1_strength_mms, signal_2_strength_mms As Double  'signal in [mm/s]
+    ReadOnly signal_1_strength_mms, signal_2_strength_mms As Double  'signal in [mm/s]
     Dim signal_1_strength_ms2, signal_2_strength_ms2 As Double  'signal on [m/s2]
     Dim calbrate_zero_d1 As Boolean = False
     Dim calbrate_zero_d2 As Boolean = False
@@ -41,18 +41,18 @@ Public Class Form1
     Dim g_factor As Double              'G_factor ISO1940 klasse
 
     Dim myPort As Array  'COM Ports detected on the system will be stored here
-    Dim comOpen As Boolean
+    ReadOnly comOpen As Boolean
 
     Dim m_Bitmap, p_Bitmap, r_Bitmap As Bitmap
     Dim m_Graphics, p_Graphics, q_Graphics As Graphics
     Dim page_no As Integer = 1          'Initial value
-    Dim start As Boolean = False
+    ReadOnly start As Boolean = False
 
     Private Property ConnectionOK As Boolean
-    Private tabControl As TabControl
+    Private ReadOnly tabControl As TabControl
     Delegate Sub SetTextCallback(ByVal intext As String) 'Added to prevent threading errors during receiveing of data
 
-    Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Sub FrmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = False    'Is required to function
         cntpic3 = cntpic4 = cntpic5 = 0
         RadioButton5.Checked = True                    ' set unbalance G6.3
@@ -352,7 +352,7 @@ Public Class Form1
         drwg_balancer_machine()
     End Sub
     'This is the drawing of the Balancing machine
-    Private Sub drwg_balancer_machine()
+    Private Sub Drwg_balancer_machine()
         Dim breed As Integer
         Dim hoog As Integer
         Dim y1, y2, y3, y4 As Integer
@@ -455,7 +455,7 @@ Public Class Form1
     Private Sub TabPage3_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles TabPage3.Paint, SplitContainer1.Panel1.Paint
         Drwg_signal_graph() 'Visual check
     End Sub
-    Private Sub btnConnect_Click(sender As System.Object, e As System.EventArgs) Handles btnConnect.Click
+    Private Sub BtnConnect_Click(sender As System.Object, e As System.EventArgs) Handles btnConnect.Click
         Me.SerialPort1.Close()                     'Close existing 
         If cmbPort.Text.Length = 0 Then
             MsgBox("Sorry, did not find any connected USB Balancers")
@@ -490,7 +490,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub btnDisconnect_Click(sender As System.Object, e As System.EventArgs) Handles btnDisconnect.Click
+    Private Sub BtnDisconnect_Click(sender As System.Object, e As System.EventArgs) Handles btnDisconnect.Click
         Try
             Me.SerialPort1.DiscardInBuffer()
             Me.SerialPort1.Close()             'Close our Serial Port
@@ -505,7 +505,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub cmbBaud_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cmbBaud.SelectedIndexChanged
+    Private Sub CmbBaud_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cmbBaud.SelectedIndexChanged
         If Me.SerialPort1.IsOpen = False Then
             Me.SerialPort1.BaudRate = cmbBaud.Text          'pop a message box to user if he is changing baud rate
         Else                                                'without disconnecting first.
@@ -513,7 +513,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub btnSend_Click(sender As System.Object, e As System.EventArgs) Handles btnSend.Click
+    Private Sub BtnSend_Click(sender As System.Object, e As System.EventArgs) Handles btnSend.Click
         Try
             If Me.SerialPort1.IsOpen = False Then
                 Me.SerialPort1.WriteLine(rtbTransmit.Text) 'The text contained in the txtText will be sent to the serial port as ascii
@@ -748,57 +748,57 @@ Public Class Form1
         End Try
         PictureBox1.Refresh()
     End Sub
-    Private Sub setlabel4(ByVal ptext As String)
+    Private Sub Setlabel4(ByVal ptext As String)
         If Me.Label4.InvokeRequired = True Then
-            Dim d As New SetTextCallback(AddressOf setlabel4)
+            Dim d As New SetTextCallback(AddressOf Setlabel4)
             Me.Invoke(d, New Object() {(ptext)})
         Else
             Me.Label4.Text = ptext
         End If
     End Sub
-    Private Sub setlabel6(ByVal ptext As String)
+    Private Sub Setlabel6(ByVal ptext As String)
         If Me.Label6.InvokeRequired = True Then
-            Dim d As New SetTextCallback(AddressOf setlabel6)
+            Dim d As New SetTextCallback(AddressOf Setlabel6)
             Me.Invoke(d, New Object() {(ptext)})
         Else
             Me.Label6.Text = ptext
         End If
     End Sub
-    Private Sub setlabel7(ByVal ptext As String)
+    Private Sub Setlabel7(ByVal ptext As String)
         If Me.Label7.InvokeRequired = True Then
-            Dim d As New SetTextCallback(AddressOf setlabel7)
+            Dim d As New SetTextCallback(AddressOf Setlabel7)
             Me.Invoke(d, New Object() {(ptext)})
         Else
             Me.Label7.Text = ptext
         End If
     End Sub
-    Private Sub setlabel8(ByVal ptext As String)
+    Private Sub Setlabel8(ByVal ptext As String)
         If Me.Label8.InvokeRequired = True Then
-            Dim d As New SetTextCallback(AddressOf setlabel8)
+            Dim d As New SetTextCallback(AddressOf Setlabel8)
             Me.Invoke(d, New Object() {(ptext)})
         Else
             Me.Label8.Text = ptext
         End If
     End Sub
-    Private Sub setlabel12(ByVal qtext As String)
+    Private Sub Setlabel12(ByVal qtext As String)
         If Me.Label12.InvokeRequired = True Then
-            Dim d As New SetTextCallback(AddressOf setlabel12)
+            Dim d As New SetTextCallback(AddressOf Setlabel12)
             Me.Invoke(d, New Object() {(qtext)})
         Else
             Me.Label12.Text = qtext
         End If
     End Sub
-    Private Sub setlabel13(ByVal qtext As String)
+    Private Sub Setlabel13(ByVal qtext As String)
         If Me.Label13.InvokeRequired = True Then
-            Dim d As New SetTextCallback(AddressOf setlabel13)
+            Dim d As New SetTextCallback(AddressOf Setlabel13)
             Me.Invoke(d, New Object() {(qtext)})
         Else
             Me.Label13.Text = qtext
         End If
     End Sub
-    Private Sub setlabel26(ByVal qtext As String)
+    Private Sub Setlabel26(ByVal qtext As String)
         If Me.Label26.InvokeRequired = True Then
-            Dim d As New SetTextCallback(AddressOf setlabel26)
+            Dim d As New SetTextCallback(AddressOf Setlabel26)
             Me.Invoke(d, New Object() {(qtext)})
         Else
             Me.Label26.Text = qtext
@@ -857,7 +857,7 @@ Public Class Form1
         update_rotor_data_screen()
     End Sub
 
-    Private Sub update_rotor_data_screen()
+    Private Sub Update_rotor_data_screen()
 
         Dim e_per As Double             'Specific residual permissable unbalance
         Dim u_per As Double             'Unbalance permisseble
@@ -884,13 +884,13 @@ Public Class Form1
             omega_max = 2 * 3.14 * NumericUpDown4.Value / 60
             'e_per = g_factor / hoeksnelheid
             e_per = g_factor * 1000 / omega_max
-            Me.setlabel12("E permissable " & e_per.ToString("F1") & " [gr.mm/kg]")
+            Me.Setlabel12("E permissable " & e_per.ToString("F1") & " [gr.mm/kg]")
 
             u_per = e_per * rotor_wght.Value / 2                       'geeft gram.mm
-            Me.setlabel7("U permissable " & u_per.ToString("F0") & " [gr.mm] each side")
+            Me.Setlabel7("U permissable " & u_per.ToString("F0") & " [gr.mm] each side")
 
             centri = u_per / 1000 / 1000 * omega_max * omega_max 'from [mm] and [gr] ---> [m] and [kg]
-            Me.setlabel8("Force permissable " & centri.ToString("F0") & " [N] each side")
+            Me.Setlabel8("Force permissable " & centri.ToString("F0") & " [N] each side")
 
             'Weight distribution
             weight_left = Center_g.Value / 100 * rotor_wght.Value
@@ -948,7 +948,7 @@ Public Class Form1
         Next i
         PictureBox3.Refresh()
     End Sub
-    Private Sub gain_ValueChanged(sender As Object, e As EventArgs) Handles Gain.ValueChanged
+    Private Sub Gain_ValueChanged(sender As Object, e As EventArgs) Handles Gain.ValueChanged
         Drwg_signal_graph()
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs)
@@ -1065,11 +1065,11 @@ Public Class Form1
         Me.SerialPort1.Parity = Parity.None
         Me.SerialPort1.StopBits = StopBits.One
         Me.SerialPort1.Handshake = Handshake.None
-        Me.SerialPort1.ParityReplace = True
+        Me.SerialPort1.ParityReplace = CByte(True)
         btnDisconnect.Enabled = False                  'Initially Disconnect Button is Disabled
     End Sub
 
-    Private Sub cmbPort_Click(sender As Object, e As EventArgs) Handles cmbPort.Click
+    Private Sub CmbPort_Click(sender As Object, e As EventArgs) Handles cmbPort.Click
         cmbPort.SelectedIndex = -1
         cmbPort.Items.Clear()
         Serial_setup()

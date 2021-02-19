@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>C:\Electronics\Balancer_USB_ADXL_03\publish\|C:\Electronics\Balancer_USB_ADXL_02\publish\|C:\Electronics\Balancer_USB_ADXL\publish\|C:\Temp\|C:\Electronics\Balancer_USB_01\publish\Application Files\</PublishUrlHistory>
+    <PublishUrlHistory>C:\Electronics\Balancer_USB_ADXL_05\publish\|C:\Electronics\Balancer_USB_ADXL_03\publish\|C:\Electronics\Balancer_USB_ADXL_02\publish\|C:\Electronics\Balancer_USB_ADXL\publish\|C:\Temp\</PublishUrlHistory>
     <InstallUrlHistory />
     <SupportUrlHistory />
     <UpdateUrlHistory />
