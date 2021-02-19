@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Balancer_USB_ADXL.exe" size="96768">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Balancer_USB_ADXL.exe" size="96256">
       <assemblyIdentity name="Balancer_USB_ADXL" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>iOFZol3Qx4+yZkRu1BvmPOIIRCTMiiAYPCZTyLvdh4U=</dsig:DigestValue>
+        <dsig:DigestValue>xF4lPC2V01jvGiCV22gIMhd0u0MdLnGeQxcRXKNWaLA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

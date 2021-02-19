@@ -19,7 +19,7 @@ Public Class Form1
     Dim hertz As Double = 1                 'Hertz of the rotor 
     Dim cntpic3 As Integer                  'Used in the graph
     Dim cntpic4 As Integer                  'Used in the graph
-    ReadOnly cntpic5 As Integer                  'Used in the graph
+    Dim cntpic5 As Integer                  'Used in the graph
     Dim bulls_eye_counter As Integer = 0
     Dim hoek1, hoek2 As Double              'angle sensor 1 and 2
     Dim weight_left As Double = 1           'weight on left support
@@ -54,7 +54,9 @@ Public Class Form1
 
     Private Sub FrmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         System.Windows.Forms.Control.CheckForIllegalCrossThreadCalls = False    'Is required to function
-        cntpic3 = cntpic4 = cntpic5 = 0
+        cntpic3 = 0
+        cntpic4 = 0
+        cntpic5 = 0
         RadioButton5.Checked = True                    ' set unbalance G6.3
         MakeNewBitmap3()                                'Clear the graph
         Read_settings()                                 'Numeric_Updown_settings
@@ -66,7 +68,7 @@ Public Class Form1
         Dim y_new_d1m, y_new_d2m As Integer
         Dim count3 As Integer   'counter for string array
         Dim strArr() As String  'string array
-        Dim time_step As Integer = 1 + NumericUpDown3.Value
+        Dim time_step As Integer = CInt(1 + NumericUpDown3.Value)
         Dim path As String = "c:\temp\_mbed.txt" ' Root directory will not work!
         Dim pen3 As New System.Drawing.Pen(Color.Black, 2)
         Dim pen3a As New System.Drawing.Pen(Color.Red, 2)
@@ -107,21 +109,21 @@ Public Class Form1
         '------------------- Sensor #1, picturebox3 actual value for Visual check-----------------------------
 
         If intext.Contains("D1") And Freeze.Checked = False And Tabs.SelectedTab.Name = "TabPage3" Then
-            strArr = intext.Split(" ")
+            strArr = intext.Split(CChar(" "))
             For count3 = 1 To 1
                 accel1_pro = Val(strArr(count3))              'acceleration sensor #1 (0.0 to 1.0 value)
                 ' MsgBox("count3= " + count3.ToString + " accel1_pro= " + accel1_pro.ToString)
-                accel1_pro = accel1_pro + zero_bias_d1              'verwerking van de bias
+                accel1_pro += zero_bias_d1              'verwerking van de bias
                 '    MsgBox(accel1_pro)
                 '---------------- draw in the graph -----------------------------------------
                 If strArr(count3) <> "" And strArr(count3) <> "D1" Then
-                    y_new1 = (0.5 - (accel1_pro - 0.5) * Gain.Value * 1.238) * PictureBox3.Height
+                    y_new1 = CInt((0.5 - (accel1_pro - 0.5) * Gain.Value * 1.238) * PictureBox3.Height)
                     Try
                         p_Graphics.DrawLine(pen3, cntpic3, y_old_s1, cntpic3 + time_step, y_new1)
                     Catch ex As Exception
                         MsgBox("Error 101 writing problem" & ex.Message)
                     End Try
-                    cntpic3 = cntpic3 + time_step
+                    cntpic3 += time_step
                     y_old_s1 = y_new1
                 End If
             Next
@@ -129,20 +131,20 @@ Public Class Form1
         End If
         '--------------------- Sensor #2, also picturebox3 actual value for visual check------------------------
         If intext.Contains("D2") And Freeze.Checked = False And Tabs.SelectedTab.Name = "TabPage3" Then
-            strArr = intext.Split(" ")
+            strArr = intext.Split(CChar(" "))
             For count3 = 1 To strArr.Length - 1
                 accel2_pro = Val(strArr(count3))                'acceleration sensor #2 (-100%/+100%)
                 accel2_pro = accel2_pro + zero_bias_d2          'verwerking van de bias
 
                 '---------------- draw in the graph -----------------------------------------
                 If strArr(count3) <> "" And strArr(count3) <> "D2" Then
-                    y_new2 = (0.5 - (accel2_pro - 0.5) * Gain.Value * 1.238) * PictureBox3.Height
+                    y_new2 = CInt((0.5 - (accel2_pro - 0.5) * Gain.Value * 1.238) * PictureBox3.Height)
                     Try
                         p_Graphics.DrawLine(pen3a, cntpic4, y_old_s2, cntpic4 + time_step, y_new2)
                     Catch ex As Exception
                         MsgBox("Error 102 writing problem" & ex.Message)
                     End Try
-                    cntpic4 = cntpic4 + time_step
+                    cntpic4 += time_step
                     y_old_s2 = y_new2
                 End If
             Next
@@ -151,7 +153,7 @@ Public Class Form1
 
         '------------------------ calculate the graph and print the resulsts Sensor1 ---------------------
         If intext.Contains("D1M") And Freeze.Checked = False And Tabs.SelectedTab.Name = "TabPage3" Then
-            strArr = intext.Split(" ")
+            strArr = intext.Split(CChar(" "))
 
             For i = 1 To 5
                 abcde(i) = Val(strArr(i))                    'Get a,b,c,d,e,
@@ -166,7 +168,7 @@ Public Class Form1
                 ymat = abcde(1) + (abcde(2) * tim) + (abcde(3) * tim ^ 2) + (abcde(4) * tim ^ 3) + (abcde(5) * tim ^ 4)
 
                 '---------------- draw in the graph -----------------------------------------
-                y_new_d1m = ymat * Gain.Value * PictureBox3.Height() * 1.238
+                y_new_d1m = CInt(ymat * Gain.Value * PictureBox3.Height() * 1.238)
                 Try
                     p_Graphics.DrawLine(pen3, cntpic3, y_old_s1, cntpic3 + time_step, y_new_d1m)
                     cntpic3 = cntpic3 + time_step
@@ -180,7 +182,7 @@ Public Class Form1
 
         '------------------------ calculate the graph and print the resulsts Sensor2 ---------------------
         If intext.Contains("D2M") And Freeze.Checked = False And Tabs.SelectedTab.Name = "TabPage3" Then
-            strArr = intext.Split(" ")
+            strArr = intext.Split(CChar(" "))
 
             For i = 1 To 5
                 abcde(i) = Val(strArr(i))
@@ -194,7 +196,7 @@ Public Class Form1
                 ymat = abcde(1) + (abcde(2) * tim) + (abcde(3) * tim ^ 2) + (abcde(4) * tim ^ 3) + (abcde(5) * tim ^ 4)
 
                 '---------------- draw in the graph -----------------------------------------
-                y_new_d2m = ymat * Gain.Value * PictureBox3.Height * 1.238
+                y_new_d2m = CInt(ymat * Gain.Value * PictureBox3.Height * 1.238)
                 Try
                     p_Graphics.DrawLine(pen3a, cntpic4, y_old_s2, cntpic4 + time_step, y_new_d2m)
                     cntpic4 = cntpic4 + time_step
@@ -209,7 +211,7 @@ Public Class Form1
 
         '------------------ Results from AS5510 ------------------
         If intext.Contains("AS5510 ") And (Tabs.SelectedTab.Name = "TabPage1" Or Tabs.SelectedTab.Name = "TabPage0") Then
-            strArr = intext.Split(" ")
+            strArr = intext.Split(CChar(" "))
             '---- RPM -------
             hertz = CDbl(Val(strArr(1)))                'Hertz of the rotor
             If hertz <= 0 Then                          'preventing problems
@@ -270,7 +272,7 @@ Public Class Form1
         '-------------------- Results from ADXL ----------
         '----------------------------------------------------------
         If intext.Contains("Results ") And (Tabs.SelectedTab.Name = "TabPage1" Or Tabs.SelectedTab.Name = "TabPage0") Then
-            strArr = intext.Split(" ")
+            strArr = intext.Split(CChar(" "))
             '---- RPM -------
             hertz = CDbl(Val(strArr(1)))                'Hertz of the rotor
             If hertz <= 0 Then                           'preventing problems
@@ -381,29 +383,29 @@ Public Class Form1
 
             'Draw supports
             y1 = hoog - 20
-            y2 = hoog / 2 - 5
+            y2 = CInt(hoog / 2 - 5)
             x_sup1 = 40
             q_Graphics.DrawLine(pen2, x_sup1, y1, x_sup1, y2)
 
-            x_sup2 = (rotor_length.Value + 400) / x_scale + x_sup1
+            x_sup2 = CInt((rotor_length.Value + 400) / x_scale + x_sup1)
             q_Graphics.DrawLine(pen2, x_sup2, y1, x_sup2, y2)
 
             'Draw center line
-            clx = hoog / 2 - 10
+            clx = CInt(hoog / 2 - 10)
             q_Graphics.DrawLine(pen2, x_sup1 - 8, clx, x_sup2 + 8, clx)
 
             'Draw Rotor radius 1
-            rad1 = Radius_left.Value / y_scale
+            rad1 = CInt(Radius_left.Value / y_scale)
             y1 = clx + rad1
             y2 = clx - rad1
-            x1 = cor_pos_left.Value / x_scale + 40
+            x1 = CInt(cor_pos_left.Value / x_scale + 40)
             q_Graphics.DrawLine(pen2, x1, y1, x1, y2)
 
             'Draw Rotor radius 2
-            rad2 = Radius_right.Value / y_scale
+            rad2 = CInt(Radius_right.Value / y_scale)
             y3 = clx + rad2
             y4 = clx - rad2
-            x2 = (400 + rotor_length.Value - cor_pos_rght.Value) / x_scale + 40
+            x2 = CInt((400 + rotor_length.Value - cor_pos_rght.Value) / x_scale + 40)
             q_Graphics.DrawLine(pen2, x2, y3, x2, y4)
 
             'Connect the dots
@@ -417,7 +419,7 @@ Public Class Form1
             w2 = x2 - 15
 
             'Center of gravity
-            z1 = x1 + (Center_g.Value * 6) / x_scale
+            z1 = CInt(x1 + (Center_g.Value * 6) / x_scale)
 
             Dim drawPoint1 As New PointF(w1, 10)    'Correctie gewicht
             Dim drawPoint2 As New PointF(w2, 10)    'Correctie gewicht
@@ -443,14 +445,14 @@ Public Class Form1
     End Sub
 
     Private Sub NumericUpDown8_ValueChanged(sender As System.Object, e As System.EventArgs) Handles Radius_left.ValueChanged
-        drwg_balancer_machine()
+        Drwg_balancer_machine()
     End Sub
     Private Sub NumericUpDown10_ValueChanged(sender As System.Object, e As System.EventArgs) Handles Radius_right.ValueChanged
-        drwg_balancer_machine()
+        Drwg_balancer_machine()
     End Sub
     Private Sub NumericUpDown4_ValueChanged(sender As System.Object, e As System.EventArgs) Handles rotor_length.ValueChanged
-        update_rotor_data_screen()
-        drwg_balancer_machine()
+        Update_rotor_data_screen()
+        Drwg_balancer_machine()
     End Sub
     Private Sub TabPage3_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles TabPage3.Paint, SplitContainer1.Panel1.Paint
         Drwg_signal_graph() 'Visual check
@@ -461,7 +463,7 @@ Public Class Form1
             MsgBox("Sorry, did not find any connected USB Balancers")
         Else
             Me.SerialPort1.PortName = cmbPort.Text         'Set SerialPort1 to the selected COM port at startup
-            Me.SerialPort1.BaudRate = cmbBaud.Text         'Set Baud rate to the selected value on
+            Me.SerialPort1.BaudRate = CInt(cmbBaud.Text)         'Set Baud rate to the selected value on
 
             'Other Serial Port Property
             Me.SerialPort1.Parity = IO.Ports.Parity.None
@@ -507,7 +509,7 @@ Public Class Form1
 
     Private Sub CmbBaud_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cmbBaud.SelectedIndexChanged
         If Me.SerialPort1.IsOpen = False Then
-            Me.SerialPort1.BaudRate = cmbBaud.Text          'pop a message box to user if he is changing baud rate
+            Me.SerialPort1.BaudRate = CInt(cmbBaud.Text)          'pop a message box to user if he is changing baud rate
         Else                                                'without disconnecting first.
             MsgBox("Valid only if port is Closed", vbCritical)
         End If
@@ -524,19 +526,19 @@ Public Class Form1
     End Sub
 
     Private Sub RadioButton6_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadioButton6.CheckedChanged
-        drwg_balancer_machine()
+        Drwg_balancer_machine()
     End Sub
 
     Private Sub RadioButton9_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles RadioButton9.CheckedChanged
-        drwg_balancer_machine()
+        Drwg_balancer_machine()
     End Sub
 
     Private Sub NumericUpDown9_ValueChanged(sender As System.Object, e As System.EventArgs) Handles cor_pos_rght.ValueChanged
-        drwg_balancer_machine()
+        Drwg_balancer_machine()
     End Sub
 
     Private Sub NumericUpDown5_ValueChanged(sender As System.Object, e As System.EventArgs) Handles cor_pos_left.ValueChanged
-        drwg_balancer_machine()
+        Drwg_balancer_machine()
     End Sub
 
     Private Sub SerialPort1_DataReceived(sender As System.Object, e As System.IO.Ports.SerialDataReceivedEventArgs) Handles SerialPort1.DataReceived
@@ -579,13 +581,13 @@ Public Class Form1
 
         MakeNewBitmap1()    'Clear the graph
         ' Draw Bulls eye #1 -----------------------
-        mx1 = PictureBox1.Width * 0.25              'Middelpunt
-        mx2 = PictureBox1.Width * 0.75              'Middelpunt
-        my1 = PictureBox1.Height * 0.5              'Middelpunt
-        my2 = GroupBox7.Height * 0.3                'Label position
+        mx1 = CInt(PictureBox1.Width * 0.25)              'Middelpunt
+        mx2 = CInt(PictureBox1.Width * 0.75)              'Middelpunt
+        my1 = CInt(PictureBox1.Height * 0.5)              'Middelpunt
+        my2 = CInt(GroupBox7.Height * 0.3)                'Label position
         my3 = TabPage1.Height - 20                  'Label position
 
-        mx4 = PictureBox1.Width * 0.5               'Hoek Label position
+        mx4 = CInt(PictureBox1.Width * 0.5)               'Hoek Label position
         my4 = TabPage1.Height - 70                  'Hoek Label position
 
         Label4.Location = New Point(30, my4)        'Hoek label
@@ -598,7 +600,7 @@ Public Class Form1
         If omegaa < 1 Then omegaa = 1 'preventing zero division
 
         bulls_eye_range = sensor_range_ADXL * 1000 / omegaa / NumericUpDown2.Value   '[mm/s]
-        delta_r = PictureBox1.Height / 20           'Radius circles  19->14
+        delta_r = CInt(PictureBox1.Height / 20)     'Radius circles  19->14
         For i = 1 To 7                              'only 7 of the 10 circles are drawn 
             rr = i * delta_r
             Try
@@ -626,7 +628,7 @@ Public Class Form1
 
         ' Draw middle cross
         Try
-            le = PictureBox1.Height * 0.4
+            le = CInt(PictureBox1.Height * 0.4)
             m_Graphics.DrawLine(pen1, mx1 - le + 20, my1, mx1 + le - 18, my1) 'Horizontal left
             m_Graphics.DrawLine(pen1, mx1, my1 - le, mx1, my1 + le) 'Vertical left
             m_Graphics.DrawLine(pen1, mx2 - le + 20, my1, mx2 + le - 18, my1) 'Horizontal
@@ -667,12 +669,12 @@ Public Class Form1
         Dim drawFont As New Font("Arial", 9)
         Dim drawBrush As New SolidBrush(Color.Black)
         Dim drawBrush2 As New SolidBrush(Color.Black)
-        Dim c_veer_L As Double = 200   'N/mm veerconstante opstelling
-        Dim c_veer_R As Double = 200   'N/mm veerconstante opstelling
+        Dim c_veer_L As Double          'N/mm veerconstante opstelling
+        Dim c_veer_R As Double          'N/mm veerconstante opstelling
         Dim str, str2 As String
 
-        c_veer_L = Spring_c_L.Value
-        c_veer_R = Spring_c_R.Value
+        c_veer_L = Spring_c_L.Value     'N/mm veerconstante opstelling
+        c_veer_R = Spring_c_R.Value     'N/mm veerconstante opstelling
         omega = hertz * 2 * PI
         If omega <= 0.1 Then   'Prevent devision by zero
             omega = 0.1
@@ -688,31 +690,31 @@ Public Class Form1
         ' MsgBox("The accel is " & accel & " snelheid is " & velo & " radius is " & e_radius, vbInformation)
 
         If bullno = 1 Then                                                          'left hand support
-            mx = PictureBox1.Width * 0.25                                           'Middelpunt bulls eye #1
+            mx = CInt(PictureBox1.Width * 0.25)                                           'Middelpunt bulls eye #1
             c_force = weight_left * accel                                           'F= m*a  [N]
             c_force = c_force + c_veer_L * e_radius                                 'F= e_radius x veerconstante opstelling
             c_wght = 1000 * 1000 * c_force / (omega * omega * Radius_left.Value)    'Radius in [mm], Correctie gewicht in gram
 
             str = "L_Sensor= " & accel.ToString("F2") & " [m/s2], v=" & velo.ToString("F2") & " [mm/s] r= " & e_radius.ToString("F4") &
                " [mm], F= " & c_force.ToString("F1") & " [N], C.wght= " & c_wght.ToString("F1") & " [gr], n= " & rpm.ToString("F0") & " [rpm]"
-            setlabel13(str)
+            Setlabel13(str)
             str2 = "Hoek= " & accel_angle.ToString("F0")
-            setlabel4(str2)
+            Setlabel4(str2)
         Else                                                                        'Right hand support   
-            mx = PictureBox1.Width * 0.75                                           'Middelpunt Bulls eye #2
+            mx = CInt(PictureBox1.Width * 0.75)                                           'Middelpunt Bulls eye #2
             c_force = weight_right * accel                                          'F= m*a [N]
             c_force = c_force + c_veer_R * e_radius                                 'F= e_radius x veerconstante opstelling
             c_wght = 1000 * 1000 * c_force / (omega * omega * Radius_right.Value)   'Radius in [mm], Correctie gewicht in gram
 
             str = "R_Sensor= " & accel.ToString("F2") & " [m/s2], v=" & velo.ToString("F2") & " [mm/s] r= " & e_radius.ToString("F4") &
                 " [mm], F= " & c_force.ToString("F1") & " [N], C.wght= " & c_wght.ToString("F1") & " [gr], n= " & rpm.ToString("F0") & " [rpm]"
-            setlabel26(str)
+            Setlabel26(str)
             str2 = "Hoek= " & accel_angle.ToString("F0")
-            setlabel6(str2)
+            Setlabel6(str2)
         End If
 
         '--------------------Draw the dot -----------------------------
-        my = PictureBox1.Height * 0.5      'Middelpunt
+        my = CInt(PictureBox1.Height * 0.5)      'Middelpunt
         alfa = accel_angle                 'angle between 0 and 360 degrees
 
         graph_scale = (velo / bulls_eye_range) * my
@@ -730,8 +732,8 @@ Public Class Form1
         'NumericUpDown2.Value = NumericUpDown2.Value + 2
         'End If
 
-        dx = Sin((alfa) / 180.0 * PI) * graph_scale
-        dy = -Cos((alfa) / 180.0 * PI) * graph_scale
+        dx = CInt(Sin((alfa) / 180.0 * PI) * graph_scale)
+        dy = CInt(-Cos((alfa) / 180.0 * PI) * graph_scale)
         Try
             If (velo >= g_factor) Then
                 len = 6
@@ -824,37 +826,37 @@ Public Class Form1
         End If
     End Sub
     Private Sub NumericUpDown3_ValueChanged(sender As Object, e As EventArgs) Handles astap_links.ValueChanged
-        drwg_balancer_machine()
-        update_rotor_data_screen()
+        Drwg_balancer_machine()
+        Update_rotor_data_screen()
     End Sub
     Private Sub NumericUpDown5_ValueChanged_1(sender As Object, e As EventArgs) Handles astap_rechts.ValueChanged
-        drwg_balancer_machine()
-        update_rotor_data_screen()
+        Drwg_balancer_machine()
+        Update_rotor_data_screen()
     End Sub
     Private Sub RadioButton5_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton5.CheckedChanged
-        update_rotor_data_screen()
+        Update_rotor_data_screen()
     End Sub
     Private Sub RadioButton7_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton7.CheckedChanged
-        update_rotor_data_screen()
+        Update_rotor_data_screen()
     End Sub
     Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
-        update_rotor_data_screen()
+        Update_rotor_data_screen()
     End Sub
     Private Sub NumericUpDown11_ValueChanged(sender As Object, e As EventArgs) Handles rotor_wght.ValueChanged
-        update_rotor_data_screen()
+        Update_rotor_data_screen()
         Calc_resonance()
     End Sub
 
     Private Sub NumericUpDown6_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDown4.ValueChanged
-        update_rotor_data_screen()
+        Update_rotor_data_screen()
     End Sub
 
     Private Sub RadioButton12_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton12.CheckedChanged
-        update_rotor_data_screen()
+        Update_rotor_data_screen()
     End Sub
 
     Private Sub RadioButton11_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton11.CheckedChanged
-        update_rotor_data_screen()
+        Update_rotor_data_screen()
     End Sub
 
     Private Sub Update_rotor_data_screen()
@@ -921,10 +923,10 @@ Public Class Form1
         Dim hor_lines As Integer
 
         MakeNewBitmap3()                                        'Clear the graph
-        wgr = Me.PictureBox3.Height * 0.5                       'Height
+        wgr = CInt(PictureBox3.Height * 0.5)                       'Height
 
         hor_lines = 10                                          'number horizontal lines in the gragh
-        delta_y = PictureBox3.Height / (2 * hor_lines + 2)
+        delta_y = CInt(PictureBox3.Height / (2 * hor_lines + 2))
         For i = 0 To hor_lines
             y1 = wgr + i * delta_y
             y2 = wgr - i * delta_y
@@ -969,7 +971,7 @@ Public Class Form1
             Case 1                          'Print first page
                 PageSetupDialog1.PageSettings.Landscape = False
                 e.Graphics.DrawString("BALANCING RESULT SHEET by Balance XS", HeaderFont, Brushes.Black, New Point(kantlijn - 2, 40))
-                e.Graphics.DrawString(date1, Me.Font, Brushes.Black, New Point(kantlijn, 70))
+                e.Graphics.DrawString(CStr(date1), Me.Font, Brushes.Black, New Point(kantlijn, 70))
 
                 Dim TabBitmap6 As New Bitmap(TabPage1.Width, TabPage1.Height)
                 TabPage1.DrawToBitmap(TabBitmap6, New Rectangle(Point.Empty, TabBitmap6.Size))
@@ -1046,7 +1048,7 @@ Public Class Form1
             For Each port In myPort
                 Me.cmbPort.Items.Add(port)
             Next port
-            Me.cmbPort.Text = cmbPort.Items.Item(0)    'Set cmbPort text to the first COM port detected
+            Me.cmbPort.Text = CStr(cmbPort.Items.Item(0))    'Set cmbPort text to the first COM port detected
         Catch ex As Exception
             MsgBox("No com ports detected")
         End Try
@@ -1152,7 +1154,7 @@ Public Class Form1
     End Sub
 
     Private Sub Center_g_ValueChanged(sender As Object, e As EventArgs) Handles Center_g.ValueChanged
-        drwg_balancer_machine()
+        Drwg_balancer_machine()
     End Sub
 
 End Class
